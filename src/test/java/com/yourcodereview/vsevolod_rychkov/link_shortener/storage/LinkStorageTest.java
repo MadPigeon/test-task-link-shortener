@@ -3,6 +3,9 @@ package com.yourcodereview.vsevolod_rychkov.link_shortener.storage;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.fail;
+
+import java.util.NoSuchElementException;
 
 import org.junit.Test;
 
@@ -39,6 +42,13 @@ public class LinkStorageTest {
     final String shortLink = LinkStorage.shorten(longLinkBefore);
     final String longLinkAfter = LinkStorage.get(shortLink);
     assertEquals(longLinkBefore, longLinkAfter);
+  }
+
+  @Test(expected = NoSuchElementException.class)
+  public void throwsExceptionWhenTryingToGetNonExistentLink() {
+    final String shortLink = "linkThatDoesntExist";
+    LinkStorage.get(shortLink);
+    fail();
   }
 
 }

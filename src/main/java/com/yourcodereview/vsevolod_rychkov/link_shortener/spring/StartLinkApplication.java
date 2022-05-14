@@ -6,6 +6,7 @@ import com.yourcodereview.vsevolod_rychkov.link_shortener.spring.interfaces.Link
 
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
 
 @SpringBootApplication
 public class StartLinkApplication {
@@ -13,6 +14,7 @@ public class StartLinkApplication {
     SpringApplication.run(StartLinkApplication.class, args);
   }
 
+  @Bean
   CommandLineRunner initDatabase(LinkRepository repository) {
     return args -> {
       repository.save(new Link("ya", "https://yandex.ru"));

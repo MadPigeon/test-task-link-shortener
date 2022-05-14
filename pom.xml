@@ -87,7 +87,7 @@
           <configuration>
             <archive>
               <manifest>
-                <mainClass>com.yourcodereview.vsevolod_rychkov.link_shortener.App</mainClass>
+                <mainClass>com.yourcodereview.vsevolod_rychkov.link_shortener.spring.StartLinkApplication</mainClass>
               </manifest>
             </archive>
           </configuration>

@@ -16,30 +16,30 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class LinkController {
-  
+
   @Autowired
   private LinkRepository repository;
 
   @ResponseStatus(HttpStatus.CREATED)
   @PostMapping("/generate")
-  Link generateShortLink(@RequestBody Link longLink) {
-    return repository.generateShortLink(longLink);
+  Link newLink(@RequestBody Link newLink) {
+    return repository.save(newLink);
   }
 
   @GetMapping("/l/{shortLink}")
-  Link findOne(@PathVariable String shortLink) {
-    return repository.findLongLink(shortLink)
-        .orElseThrow(() -> new LinkNotFoundException(shortLink));
+  String getLongLink(@PathVariable String shortLink) {
+    return repository.findById(shortLink)
+        .orElseThrow(() -> new LinkNotFoundException(shortLink)).getLongLink();
   }
 
   @GetMapping("/stats")
   List<Link> getStatsFull() {
-    return repository.getStatsFull();
+    return repository.findAll();
   }
 
   @GetMapping("/stats/{shortLink}")
   Link getStatsForOneLink(@PathVariable String shortLink) {
-    return repository.getStats(shortLink)
+    return repository.findById(shortLink)
         .orElseThrow(() -> new LinkNotFoundException(shortLink));
   }
 

@@ -2,8 +2,11 @@ package com.yourcodereview.vsevolod_rychkov.link_shortener.spring;
 
 import java.util.List;
 
+import com.yourcodereview.vsevolod_rychkov.link_shortener.generation.LinkGenerator;
 import com.yourcodereview.vsevolod_rychkov.link_shortener.spring.error.LinkNotFoundException;
 import com.yourcodereview.vsevolod_rychkov.link_shortener.spring.interfaces.LinkRepository;
+import com.yourcodereview.vsevolod_rychkov.link_shortener.spring.wrappers.LinkRequestWrapper;
+import com.yourcodereview.vsevolod_rychkov.link_shortener.spring.wrappers.LinkResponseWrapper;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -21,9 +24,10 @@ public class LinkController {
   private LinkRepository repository;
 
   @ResponseStatus(HttpStatus.CREATED)
-  @PostMapping("/generate")
-  Link newLink(@RequestBody Link newLink) {
-    return repository.save(newLink);
+  @PostMapping(value = "/generate")
+  LinkResponseWrapper newLink(@RequestBody String newLongLink) {
+    Link newLink = repository.save(new Link(LinkGenerator.createLink(), newLongLink));
+    return new LinkResponseWrapper(newLink.getShortLink());
   }
 
   @GetMapping("/l/{shortLink}")

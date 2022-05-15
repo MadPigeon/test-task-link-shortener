@@ -9,8 +9,10 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @Entity
 public class Link {
 
-  private static final String linkPrefix = "/l/";
-
+  /**
+   * web path prefix to links
+   */
+  public static final String LINK_PREFIX = "/l/";
   @Id
   @JsonIgnore
   private String shortLink;
@@ -27,7 +29,7 @@ public class Link {
 
   public Link(String shortLink, String longLink, long rank, long count) {
     this.shortLink = shortLink;
-    this.shortLinkWithPrefix = linkPrefix + shortLink;
+    this.shortLinkWithPrefix = LINK_PREFIX + shortLink;
     this.longLink = longLink;
     this.count = count;
     this.rank = rank;

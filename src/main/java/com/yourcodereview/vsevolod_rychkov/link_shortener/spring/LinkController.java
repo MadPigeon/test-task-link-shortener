@@ -5,7 +5,6 @@ import java.util.List;
 import com.yourcodereview.vsevolod_rychkov.link_shortener.generation.LinkGenerator;
 import com.yourcodereview.vsevolod_rychkov.link_shortener.spring.error.LinkNotFoundException;
 import com.yourcodereview.vsevolod_rychkov.link_shortener.spring.interfaces.LinkRepository;
-import com.yourcodereview.vsevolod_rychkov.link_shortener.spring.wrappers.LinkRequestWrapper;
 import com.yourcodereview.vsevolod_rychkov.link_shortener.spring.wrappers.LinkResponseWrapper;
 
 import org.springframework.beans.factory.annotation.Autowired;

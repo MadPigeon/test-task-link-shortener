@@ -1,6 +1,5 @@
 package com.yourcodereview.vsevolod_rychkov.link_shortener.spring;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.yourcodereview.vsevolod_rychkov.link_shortener.spring.interfaces.LinkRepository;
 import com.yourcodereview.vsevolod_rychkov.link_shortener.spring.wrappers.LinkRequestWrapper;
@@ -52,7 +51,6 @@ public class LinkControllerRestTest {
 
   @Test
   public void getLinkByShortLink() {
-    // TODO: make it return redirect
 
     String shortLink = "someShortName";
     String expected = "http://some-server.com/some/url";
@@ -140,16 +138,6 @@ public class LinkControllerRestTest {
 
     verify(mockRepository, times(1)).save(any(Link.class));
 
-  }
-
-  private static void printJSON(Object object) {
-    String result;
-    try {
-      result = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(object);
-      System.out.println(result);
-    } catch (JsonProcessingException e) {
-      e.printStackTrace();
-    }
   }
 
 }

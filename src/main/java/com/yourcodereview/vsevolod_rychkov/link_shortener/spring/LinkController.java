@@ -28,8 +28,9 @@ public class LinkController {
 
   @GetMapping("/l/{shortLink}")
   String getLongLink(@PathVariable String shortLink) {
-    return repository.findById(shortLink)
-        .orElseThrow(() -> new LinkNotFoundException(shortLink)).getLongLink();
+    Link link = repository.findById(shortLink).orElseThrow(() -> new LinkNotFoundException(shortLink));
+    link.bumpCount();
+    return link.getLongLink();
   }
 
   @GetMapping("/stats")

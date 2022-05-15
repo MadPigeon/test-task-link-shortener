@@ -13,13 +13,18 @@ public class CustomGlobalExceptionHandler extends ResponseEntityExceptionHandler
 
   // Let Spring handle the exception, we just override the status code
   @ExceptionHandler(BookNotFoundException.class)
-  public void springHandleNotFound(HttpServletResponse response) throws IOException {
+  public void bookNotFound(HttpServletResponse response) throws IOException {
     response.sendError(HttpStatus.NOT_FOUND.value());
   }
 
   @ExceptionHandler(BookUnSupportedFieldPatchException.class)
-  public void springUnSupportedFieldPatch(HttpServletResponse response) throws IOException {
+  public void bookUnsupportedFieldPatch(HttpServletResponse response) throws IOException {
     response.sendError(HttpStatus.METHOD_NOT_ALLOWED.value());
+  }
+
+  @ExceptionHandler(LinkNotFoundException.class)
+  public void linkNotFound(HttpServletResponse response) throws IOException {
+    response.sendError(HttpStatus.NOT_FOUND.value());
   }
 
 }

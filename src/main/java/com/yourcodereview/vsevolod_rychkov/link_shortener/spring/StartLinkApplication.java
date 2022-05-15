@@ -11,10 +11,13 @@ import org.springframework.context.annotation.Profile;
 
 @SpringBootApplication
 public class StartLinkApplication {
+
+  // start everything
   public static void main(String[] args) {
     SpringApplication.run(StartLinkApplication.class, args);
   }
 
+  // run this only on profile 'demo', avoid run this in test
   @Profile("demo")
   @Bean
   CommandLineRunner initDatabase(BookRepository repository) {
@@ -25,5 +28,4 @@ public class StartLinkApplication {
           new Book("Refactoring: Improving the Design of Existing Code", "Martin Fowler", new BigDecimal("47.99")));
     };
   }
-
 }
